@@ -10,9 +10,9 @@ from keras.layers import Flatten
 from sklearn.model_selection import train_test_split
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 
-train = pd.read_csv("reddit_train.csv", sep=',')
+train = pd.read_csv("data/reddit_train.csv", sep=',')
 # comments = train["comments"].astype(str)
-comments = pd.read_csv("train_processed.csv", sep=',').astype(str)
+comments = pd.read_csv("data/train_processed.csv", sep=',').astype(str)
 labels = train["subreddits"].astype(str)
 
 # The maximum number of words to be used. (most frequent)

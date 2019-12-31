@@ -133,36 +133,36 @@ class TextPreprocess:
     def process(X):
         # Read in files
         train = pd.read_csv(X, sep=',')
-        #
-        # remove_tags = np.vectorize(TextPreprocess.remove_tags)
-        # remove_repeat = np.vectorize(TextPreprocess.remove_repeat)
-        #
-        # # Note: Order of remove operations matters!
-        # comments = comments.apply(lambda x: remove_tags(x))
-        # comments = comments.apply(lambda x: remove_special_chars_digits(x))
-        # print("----removed urls tags, set lowercase, remove specials characters and digits----\n", comments.head(5))
-        #
-        # # Tokenize comments
-        # comments = comments.apply(word_tokenize)
-        # print("----tokenized----\n", comments.head(12))
-        #
-        # comments = lemmatize(comments)
-        # print("----lemmatized----\n", comments.head(12))
-        # #
-        # # # Remove Stopwords
-        # # stop_words = set(stopwords.words('english'))
-        # # comments = comments.apply(lambda x: [item for item in x if item not in stop_words])
-        # # print("----removed stop words----\n", comments.head(5))
-        # #
-        #
-        # comments = remove_repeat(comments)
-        # print("----removed repeat----\n", comments.head(5))
+        
+         remove_tags = np.vectorize(TextPreprocess.remove_tags)
+         remove_repeat = np.vectorize(TextPreprocess.remove_repeat)
+        
+         # Note: Order of remove operations matters!
+         comments = comments.apply(lambda x: remove_tags(x))
+         comments = comments.apply(lambda x: remove_special_chars_digits(x))
+         print("----removed urls tags, set lowercase, remove specials characters and digits----\n", comments.head(5))
+        
+         # Tokenize comments
+         comments = comments.apply(word_tokenize)
+         print("----tokenized----\n", comments.head(12))
+        
+         comments = lemmatize(comments)
+         print("----lemmatized----\n", comments.head(12))
+         
+          # Remove Stopwords
+          stop_words = set(stopwords.words('english'))
+          comments = comments.apply(lambda x: [item for item in x if item not in stop_words])
+          print("----removed stop words----\n", comments.head(5))
+         
+        
+         comments = remove_repeat(comments)
+         print("----removed repeat----\n", comments.head(5))
 
         train['comments'] = train['comments'].apply(clean_text)
         comments = train['comments']
 
 # Uncomment to choose between train and test processed
-        #comments.to_csv('train_processed.csv')
+        comments.to_csv('train_processed.csv')
         comments.to_csv('test_processed.csv')
 
         return comments
@@ -173,7 +173,7 @@ class TextPreprocess:
 
 # How to use
 # Uncomment to choose between train and test processed
-#TextPreprocess.process("reddit_train.csv")
+TextPreprocess.process("reddit_train.csv")
 TextPreprocess.process("reddit_test.csv")
 
 
